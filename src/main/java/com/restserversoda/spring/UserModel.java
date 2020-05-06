@@ -21,6 +21,17 @@ public class UserModel {
         this.occupation = occupation;
     }
 
+    public UserModel(String username, String id, List<TripModel> trips, int age, String gender, String condition, String occupation, double score) {
+        this.username = username;
+        this.id = id;
+        this.trips = trips;
+        this.age = age;
+        this.gender = gender;
+        this.condition = condition;
+        this.occupation = occupation;
+        this.score = score;
+    }
+
     public int getAge() {
         return age;
     }
