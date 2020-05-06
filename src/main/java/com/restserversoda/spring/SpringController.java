@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class SpringController {
 
 	Gson gson = new Gson();
+	@GetMapping("/")
+	public String test()
+	{
+		return "Hello!";
+	}
+
 	@GetMapping("/fetchuser/{username}")
 	public String fetchUser(@PathVariable String username) {
 
