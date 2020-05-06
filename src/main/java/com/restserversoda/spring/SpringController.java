@@ -17,7 +17,15 @@ public class SpringController {
 	@GetMapping("/")
 	public String test()
 	{
-		return "Hello!";
+		try(InputStream inputStream = new FileInputStream("data.json");
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream)))
+		{
+			return bufferedReader.readLine();
+		}
+		catch (Exception e)
+		{
+			return e.getMessage();
+		}
 	}
 
 	@GetMapping("/fetchuser/{username}")
@@ -46,7 +54,7 @@ public class SpringController {
 			}
 		}
 	}
-	@PutMapping("/syncdb/")
+	@PostMapping("/syncdb/")
 	public int syncDb(@RequestBody String user)
 	{
 		synchronized (this)
@@ -65,15 +73,24 @@ public class SpringController {
 					return 0;
 				}
 				int i;
+				boolean found = false;
 				for(i=0; i<users.size(); i++)
 				{
-					if(users.get(i).getId().equals(_user.getId()))
+					if(users.get(i).getUsername().equals(_user.getUsername()))
 					{
+						found = true;
 						break;
 					}
 				}
-				users.remove(i);
-				users.add(_user);
+				if(!found)
+				{
+					users.add(_user);
+				}
+				else
+				{
+					users.remove(i);
+					users.add(_user);
+				}
 				try(Writer writer = new FileWriter("data.json",false))
 				{
 					gson.toJson(users, writer);
