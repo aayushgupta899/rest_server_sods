@@ -13,14 +13,6 @@ public class UserModel {
     private String condition;
     private String occupation;
 
-    public String getOccupation() {
-        return occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
     public UserModel(String username, String id, List<TripModel> trips, int age, String gender, String condition, String occupation, double score) {
         this.username = username;
         this.id = id;
@@ -30,6 +22,14 @@ public class UserModel {
         this.condition = condition;
         this.occupation = occupation;
         this.score = score;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
     }
 
     public int getAge() {
@@ -56,16 +56,16 @@ public class UserModel {
         this.condition = condition;
     }
 
-    public double getScore() {
-        return score;
-    }
-
     public void setScore(double score) {
         this.score = score;
     }
 
-    private double score;
+    public double getScore() {
+        return score;
+    }
 
+
+    private double score;
     public UserModel()
     {
         this.setTrips(new ArrayList<TripModel>());
