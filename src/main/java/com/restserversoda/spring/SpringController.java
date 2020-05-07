@@ -17,7 +17,7 @@ public class SpringController {
 	@GetMapping("/")
 	public String test()
 	{
-		try(InputStream inputStream = new FileInputStream("data.json");
+		try(InputStream inputStream = new FileInputStream("src/main/data/data.json");
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream)))
 		{
 			return bufferedReader.readLine();
@@ -33,7 +33,7 @@ public class SpringController {
 
 		synchronized (this) {
 			try {
-				List<UserModel> users = gson.fromJson(new FileReader("data.json"), new TypeToken<List<UserModel>>(){}.getType());
+				List<UserModel> users = gson.fromJson(new FileReader("src/main/data/data.json"), new TypeToken<List<UserModel>>(){}.getType());
 				if(users == null || users.isEmpty())
 				{
 					return "";
@@ -59,14 +59,14 @@ public class SpringController {
 	{
 		synchronized (this)
 		{
-			try (Reader reader = new FileReader("data.json")){
+			try (Reader reader = new FileReader("src/main/data/data.json")){
 				List<UserModel> users = gson.fromJson(reader, new TypeToken<List<UserModel>>(){}.getType());
 				UserModel _user = gson.fromJson(user, UserModel.class);
 				if(users == null || users.isEmpty())
 				{
 					users = new ArrayList<>();
 					users.add(_user);
-					try(Writer writer = new FileWriter("data.json",false))
+					try(Writer writer = new FileWriter("src/main/data/data.json",false))
 					{
 						gson.toJson(users, writer);
 					}
@@ -91,7 +91,7 @@ public class SpringController {
 					users.remove(i);
 					users.add(_user);
 				}
-				try(Writer writer = new FileWriter("data.json",false))
+				try(Writer writer = new FileWriter("src/main/data/data.json",false))
 				{
 					gson.toJson(users, writer);
 				}
@@ -109,7 +109,7 @@ public class SpringController {
 	{
 		synchronized (this)
 		{
-			try (Reader reader = new FileReader("data.json")) {
+			try (Reader reader = new FileReader("src/main/data/data.json")) {
 				List<UserModel> users = gson.fromJson(reader, new TypeToken<List<UserModel>>(){}.getType());
 				if(users == null || users.isEmpty())
 				{
