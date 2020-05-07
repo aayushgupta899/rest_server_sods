@@ -62,7 +62,7 @@ public class SpringController {
 		{
 			try (Reader reader = new FileReader("src/main/data/data.json")){
 				List<UserModel> users = gson.fromJson(reader, new TypeToken<List<UserModel>>(){}.getType());
-				UserModel _user = gson.fromJson(user, UserModel.class);
+				UserModel _user = gson.fromJson(user, new TypeToken<UserModel>(){}.getType());
 				if(users == null || users.isEmpty())
 				{
 					users = new ArrayList<>();
