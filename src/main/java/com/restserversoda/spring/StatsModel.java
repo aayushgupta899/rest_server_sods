@@ -5,7 +5,15 @@ public class StatsModel {
     private double agePercent;
     private double genderPercent;
     private double conditionPercent;
+    public double getCumScore() {
+        return cumScore;
+    }
 
+    public void setCumScore(double cumScore) {
+        this.cumScore = cumScore;
+    }
+
+    private double cumScore;
     public double getOccupationPercent() {
         return occupationPercent;
     }

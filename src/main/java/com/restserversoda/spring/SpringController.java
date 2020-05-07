@@ -158,6 +158,11 @@ public class SpringController {
 				conditionList.sort(new CustomComparator());
 				occupationList.sort(new CustomComparator());
 				StatsModel stats = new StatsModel();
+				stats.setCumScore(user.getScore());
+				stats.setOccupationPercent(100.0);
+				stats.setConditionPercent(100.0);
+				stats.setGenderPercent(100.0);
+				stats.setAgePercent(100.0);
 				for(int i=0; i<occupationList.size(); i++)
 				{
 					if(occupationList.get(i).getUsername().equals(username))
