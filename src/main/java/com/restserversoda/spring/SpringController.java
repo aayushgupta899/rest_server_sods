@@ -7,13 +7,14 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SpringController {
 
-	Gson gson = new Gson();
+	Gson gson = new GsonBuilder().setDateFormat("MMM d, yyyy HH:mm:ss").create();
 	@GetMapping("/")
 	public String test()
 	{

@@ -1,6 +1,7 @@
 package com.restserversoda.spring;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
@@ -14,7 +15,7 @@ public class Test {
     static List<UserModel> userModelList;
     public static void readUsers()
     {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setDateFormat("MMM d, yyyy HH:mm:ss").create();
         try {
             FileReader reader = new FileReader("data.json");
             List<UserModel> list = gson.fromJson(reader, new TypeToken<List<UserModel>>(){}.getType());
@@ -49,7 +50,7 @@ public class Test {
         userModelList.add(user);
         user = new UserModel("chikara212", UUID.randomUUID().toString(), new ArrayList<>(), 23, "f", "na", "teacher", 65.6);
         userModelList.add(user);
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setDateFormat("MMM d, yyyy HH:mm:ss").create();
         try {
             String json = gson.toJson(userModelList);
             FileWriter writer = new FileWriter("data.json");
